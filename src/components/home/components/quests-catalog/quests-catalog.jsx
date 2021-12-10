@@ -56,7 +56,7 @@ const QuestsCatalog = () => (
 
     <S.QuestsList>
       <S.QuestItem>
-        <S.QuestItemLink to="/quest">
+        <S.QuestItemLink to={'/detailed-quest/808'}>
           <S.Quest>
             <S.QuestImage
               src="img/preview-sklep.jpg"

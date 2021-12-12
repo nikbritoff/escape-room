@@ -7,223 +7,101 @@ import { ReactComponent as IconScifi } from 'assets/img/icon-scifi.svg';
 import { ReactComponent as IconPerson } from 'assets/img/icon-person.svg';
 import { ReactComponent as IconPuzzle } from 'assets/img/icon-puzzle.svg';
 import * as S from './quests-catalog.styled';
+import { useSelector, useDispatch } from 'react-redux';
+import { getCurrentGenre } from 'store/app-state/selectors';
+import { questTypes } from 'const';
+import { changeGenre } from 'store/action';
+import { selectCurrentQuests } from 'store/quests/selectors';
+import { translateQuestLevel } from 'utils/common';
 
-const QuestsCatalog = () => (
-  <>
-    <S.Tabs>
-      <S.TabItem>
-        <S.TabBtn isActive>
-          <IconAllQuests />
-          <S.TabTitle>Все квесты</S.TabTitle>
-        </S.TabBtn>
-      </S.TabItem>
+const QuestsCatalog = () => {
+  const dispatch = useDispatch();
+  const currentGenre = useSelector(getCurrentGenre);
+  const questsList = useSelector(selectCurrentQuests);
 
-      <S.TabItem>
-        <S.TabBtn>
-          <IconAdventures />
-          <S.TabTitle>Приключения</S.TabTitle>
-        </S.TabBtn>
-      </S.TabItem>
+  const changeGenreHandler = (genre) => {
+    dispatch(changeGenre(genre));
+  }
 
-      <S.TabItem>
-        <S.TabBtn>
-          <IconHorrors />
-          <S.TabTitle>Ужасы</S.TabTitle>
-        </S.TabBtn>
-      </S.TabItem>
+    return (
+    <>
+      <S.Tabs>
+        <S.TabItem onClick={() => changeGenreHandler(questTypes[0])}>
+          <S.TabBtn isActive={currentGenre === questTypes[0]}>
+            <IconAllQuests />
+            <S.TabTitle>Все квесты</S.TabTitle>
+          </S.TabBtn>
+        </S.TabItem>
 
-      <S.TabItem>
-        <S.TabBtn>
-          <IconMystic />
-          <S.TabTitle>Мистика</S.TabTitle>
-        </S.TabBtn>
-      </S.TabItem>
+        <S.TabItem onClick={() => changeGenreHandler(questTypes[1])}>
+          <S.TabBtn isActive={currentGenre === questTypes[1]}>
+            <IconAdventures/>
+            <S.TabTitle>Приключения</S.TabTitle>
+          </S.TabBtn>
+        </S.TabItem>
 
-      <S.TabItem>
-        <S.TabBtn>
-          <IconDetective />
-          <S.TabTitle>Детектив</S.TabTitle>
-        </S.TabBtn>
-      </S.TabItem>
+        <S.TabItem onClick={() => changeGenreHandler(questTypes[2])}>
+          <S.TabBtn isActive={currentGenre === questTypes[2]}>
+            <IconHorrors />
+            <S.TabTitle>Ужасы</S.TabTitle>
+          </S.TabBtn>
+        </S.TabItem>
 
-      <S.TabItem>
-        <S.TabBtn>
-          <IconScifi />
-          <S.TabTitle>Sci-fi</S.TabTitle>
-        </S.TabBtn>
-      </S.TabItem>
-    </S.Tabs>
+        <S.TabItem onClick={() => changeGenreHandler(questTypes[3])}>
+          <S.TabBtn isActive={currentGenre === questTypes[3]}>
+            <IconMystic />
+            <S.TabTitle>Мистика</S.TabTitle>
+          </S.TabBtn>
+        </S.TabItem>
 
-    <S.QuestsList>
-      <S.QuestItem>
-        <S.QuestItemLink to={'/detailed-quest/808'}>
-          <S.Quest>
-            <S.QuestImage
-              src="img/preview-sklep.jpg"
-              width="344"
-              height="232"
-              alt="квест Склеп"
-            />
+        <S.TabItem onClick={() => changeGenreHandler(questTypes[4])}>
+          <S.TabBtn isActive={currentGenre === questTypes[4]}>
+            <IconDetective />
+            <S.TabTitle>Детектив</S.TabTitle>
+          </S.TabBtn>
+        </S.TabItem>
 
-            <S.QuestContent>
-              <S.QuestTitle>Склеп</S.QuestTitle>
+        <S.TabItem onClick={() => changeGenreHandler(questTypes[5])}>
+          <S.TabBtn isActive={currentGenre === questTypes[5]}>
+            <IconScifi />
+            <S.TabTitle>Sci-fi</S.TabTitle>
+          </S.TabBtn>
+        </S.TabItem>
+      </S.Tabs>
 
-              <S.QuestFeatures>
-                <S.QuestFeatureItem>
-                  <IconPerson />
-                  2–5 чел
-                </S.QuestFeatureItem>
-                <S.QuestFeatureItem>
-                  <IconPuzzle />
-                  сложный
-                </S.QuestFeatureItem>
-              </S.QuestFeatures>
-            </S.QuestContent>
-          </S.Quest>
-        </S.QuestItemLink>
-      </S.QuestItem>
+      <S.QuestsList>
+        {questsList.map((quest) => (
+          <S.QuestItem key={quest.id}>
+            <S.QuestItemLink to={`/detailed-quest/${quest.id}`}>
+              <S.Quest>
+                <S.QuestImage
+                  src={quest.previewImg}
+                  width="344"
+                  height="232"
+                  alt={`Квест ${quest.title}`}
+                />
 
-      <S.QuestItem>
-        <S.QuestItemLink to="/quest">
-          <S.Quest>
-            <S.QuestImage
-              src="img/preview-maniac.jpg"
-              width="344"
-              height="232"
-              alt="квест Маньяк"
-            />
+                <S.QuestContent>
+                  <S.QuestTitle>{quest.title}</S.QuestTitle>
 
-            <S.QuestContent>
-              <S.QuestTitle>Маньяк</S.QuestTitle>
-
-              <S.QuestFeatures>
-                <S.QuestFeatureItem>
-                  <IconPerson />
-                  3–6 чел
-                </S.QuestFeatureItem>
-                <S.QuestFeatureItem>
-                  <IconPuzzle />
-                  средний
-                </S.QuestFeatureItem>
-              </S.QuestFeatures>
-            </S.QuestContent>
-          </S.Quest>
-        </S.QuestItemLink>
-      </S.QuestItem>
-
-      <S.QuestItem>
-        <S.QuestItemLink to="/quest">
-          <S.Quest>
-            <S.QuestImage
-              src="img/preview-ritual.jpg"
-              width="344"
-              height="232"
-              alt="квест Ритуал"
-            />
-
-            <S.QuestContent>
-              <S.QuestTitle>Ритуал</S.QuestTitle>
-
-              <S.QuestFeatures>
-                <S.QuestFeatureItem>
-                  <IconPerson />
-                  3–5 чел
-                </S.QuestFeatureItem>
-                <S.QuestFeatureItem>
-                  <IconPuzzle />
-                  легкий
-                </S.QuestFeatureItem>
-              </S.QuestFeatures>
-            </S.QuestContent>
-          </S.Quest>
-        </S.QuestItemLink>
-      </S.QuestItem>
-
-      <S.QuestItem>
-        <S.QuestItemLink to="/quest">
-          <S.Quest>
-            <S.QuestImage
-              src="img/preview-old-ceil.jpg"
-              width="344"
-              height="232"
-              alt="квест История призраков"
-            />
-
-            <S.QuestContent>
-              <S.QuestTitle>История призраков</S.QuestTitle>
-
-              <S.QuestFeatures>
-                <S.QuestFeatureItem>
-                  <IconPerson />
-                  5–6 чел
-                </S.QuestFeatureItem>
-                <S.QuestFeatureItem>
-                  <IconPuzzle />
-                  легкий
-                </S.QuestFeatureItem>
-              </S.QuestFeatures>
-            </S.QuestContent>
-          </S.Quest>
-        </S.QuestItemLink>
-      </S.QuestItem>
-
-      <S.QuestItem>
-        <S.QuestItemLink to="/quest">
-          <S.Quest>
-            <S.QuestImage
-              src="img/preview-final-frontier.jpg"
-              width="344"
-              height="232"
-              alt="квест Тайны старого особняка"
-            />
-
-            <S.QuestContent>
-              <S.QuestTitle>Тайны старого особняка</S.QuestTitle>
-
-              <S.QuestFeatures>
-                <S.QuestFeatureItem>
-                  <IconPerson />
-                  2–3 чел
-                </S.QuestFeatureItem>
-                <S.QuestFeatureItem>
-                  <IconPuzzle />
-                  легкий
-                </S.QuestFeatureItem>
-              </S.QuestFeatures>
-            </S.QuestContent>
-          </S.Quest>
-        </S.QuestItemLink>
-      </S.QuestItem>
-
-      <S.QuestItem>
-        <S.QuestItemLink to="/quest">
-          <S.Quest>
-            <S.QuestImage
-              src="img/preview-house-in-the-woods.jpg"
-              width="344"
-              height="232"
-              alt="квест Хижина в лесу"
-            />
-
-            <S.QuestContent>
-              <S.QuestTitle>Хижина в лесу</S.QuestTitle>
-
-              <S.QuestFeatures>
-                <S.QuestFeatureItem>
-                  <IconPerson />
-                  4–7 чел
-                </S.QuestFeatureItem>
-                <S.QuestFeatureItem>
-                  <IconPuzzle />
-                  средний
-                </S.QuestFeatureItem>
-              </S.QuestFeatures>
-            </S.QuestContent>
-          </S.Quest>
-        </S.QuestItemLink>
-      </S.QuestItem>
-    </S.QuestsList>
-  </>
-);
+                  <S.QuestFeatures>
+                    <S.QuestFeatureItem>
+                      <IconPerson />
+                      {quest.peopleCount[0]}–{quest.peopleCount[1]} чел
+                    </S.QuestFeatureItem>
+                    <S.QuestFeatureItem>
+                      <IconPuzzle />
+                      {translateQuestLevel(quest.level)}
+                    </S.QuestFeatureItem>
+                  </S.QuestFeatures>
+                </S.QuestContent>
+              </S.Quest>
+            </S.QuestItemLink>
+          </S.QuestItem>
+        ))}
+      </S.QuestsList>
+    </>
+  );
+}
 
 export default QuestsCatalog;

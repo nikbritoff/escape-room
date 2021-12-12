@@ -10,7 +10,7 @@ import Home from 'components/home/home';
 import { appTheme } from './common';
 import * as S from './app.styled';
 import NotFound from 'components/not-found/not-found';
-import { AppRoute } from 'components/const';
+import { AppRoute } from 'const';
 
 const App = () => (
   <ThemeProvider theme={appTheme}>

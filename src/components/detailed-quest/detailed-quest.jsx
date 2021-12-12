@@ -5,9 +5,12 @@ import { ReactComponent as IconPerson } from 'assets/img/icon-person.svg';
 import { ReactComponent as IconPuzzle } from 'assets/img/icon-puzzle.svg';
 import * as S from './detailed-quest.styled';
 import { BookingModal } from './components/components';
+import { useParams } from 'react-router';
 
 const DetailedQuest = () => {
   const [isBookingModalOpened, setIsBookingModalOpened] = useState(false);
+  const {id} = useParams();
+  console.log(id);
 
   const onBookingBtnClick = () => {
     setIsBookingModalOpened(true);

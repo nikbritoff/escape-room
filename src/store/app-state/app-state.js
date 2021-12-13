@@ -1,9 +1,9 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { questTypes } from 'const';
+import { questType } from 'const';
 import { changeGenre } from 'store/action';
 
 const initialState = {
-  currentGenre: questTypes[0],
+  currentGenre: questType.All,
 }
 
 const appState = createReducer(initialState, (builder) => {

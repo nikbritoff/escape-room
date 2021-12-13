@@ -1,5 +1,5 @@
 import { APIRoute } from 'const';
-import { loadQuestsError, loadQuestsSuccess, requestQuests } from './action';
+import { loadDetailedQuestError, loadDetailedQuestSuccess, loadQuestsError, loadQuestsSuccess, requestDetailedQuest, requestQuests } from './action';
 
 export const fetchQuestsAction = () => (
   async (dispatch, _, api) => {
@@ -13,3 +13,16 @@ export const fetchQuestsAction = () => (
     }
   }
 );
+
+export const fetchDetailedQuestAction = (id) => (
+  async (dispatch, _, api) => {
+    try {
+      dispatch(requestDetailedQuest());
+      const {data} = await api.get(`${APIRoute.Quests}${id}`);
+      dispatch(loadDetailedQuestSuccess(data));
+    }
+    catch {
+      dispatch(loadDetailedQuestError());
+    }
+  }
+)

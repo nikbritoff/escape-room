@@ -1,26 +1,28 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { QuestsList } from 'mock/mock';
 import { loadQuestsError, loadQuestsSuccess, requestQuests } from 'store/action';
 
 const initialState = {
-  questsList: QuestsList,
+  questsList: [],
   questsLoading: false,
   questsError: false,
+  questsSuccess: false,
 }
 
 const quests = createReducer(initialState, (builder) => {
   builder
+    .addCase(requestQuests, (state) => {
+      state.questsLoading = true;
+    })
     .addCase(loadQuestsSuccess, (state, action) => {
       state.questsList = action.payload;
       state.questsLoading = false;
       state.questsError = false;
-    })
-    .addCase(requestQuests, (state) => {
-      state.questsLoading = true;
+      state.questsSuccess = true;
     })
     .addCase(loadQuestsError, (state) => {
       state.questsLoading = false;
-      state.loadQuestsError = true;
+      state.questsError = true;
+      state.questsSuccess = false;
     });
 });
 

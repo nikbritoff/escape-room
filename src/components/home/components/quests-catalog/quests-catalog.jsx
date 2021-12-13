@@ -9,15 +9,18 @@ import { ReactComponent as IconPuzzle } from 'assets/img/icon-puzzle.svg';
 import * as S from './quests-catalog.styled';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCurrentGenre } from 'store/app-state/selectors';
-import { questTypes } from 'const';
+import { ErrorMessage, questType } from 'const';
 import { changeGenre } from 'store/action';
-import { selectCurrentQuests } from 'store/quests/selectors';
+import { getQuestsError, getQuestsLoading, getQuestsSuccess, selectCurrentQuests } from 'store/quests/selectors';
 import { translateQuestLevel } from 'utils/common';
 
 const QuestsCatalog = () => {
   const dispatch = useDispatch();
   const currentGenre = useSelector(getCurrentGenre);
   const questsList = useSelector(selectCurrentQuests);
+  const isQuestsListLoading = useSelector(getQuestsLoading);
+  const isLoadQuestsError = useSelector(getQuestsError);
+  const isLoadQuestsSuccess = useSelector(getQuestsSuccess);
 
   const changeGenreHandler = (genre) => {
     dispatch(changeGenre(genre));
@@ -26,50 +29,54 @@ const QuestsCatalog = () => {
     return (
     <>
       <S.Tabs>
-        <S.TabItem onClick={() => changeGenreHandler(questTypes[0])}>
-          <S.TabBtn isActive={currentGenre === questTypes[0]}>
+        <S.TabItem onClick={() => changeGenreHandler(questType.All)}>
+          <S.TabBtn isActive={currentGenre === questType.All}>
             <IconAllQuests />
             <S.TabTitle>Все квесты</S.TabTitle>
           </S.TabBtn>
         </S.TabItem>
 
-        <S.TabItem onClick={() => changeGenreHandler(questTypes[1])}>
-          <S.TabBtn isActive={currentGenre === questTypes[1]}>
+        <S.TabItem onClick={() => changeGenreHandler(questType.Adventures)}>
+          <S.TabBtn isActive={currentGenre === questType.Adventures}>
             <IconAdventures/>
             <S.TabTitle>Приключения</S.TabTitle>
           </S.TabBtn>
         </S.TabItem>
 
-        <S.TabItem onClick={() => changeGenreHandler(questTypes[2])}>
-          <S.TabBtn isActive={currentGenre === questTypes[2]}>
+        <S.TabItem onClick={() => changeGenreHandler(questType.Horror)}>
+          <S.TabBtn isActive={currentGenre === questType.Horror}>
             <IconHorrors />
             <S.TabTitle>Ужасы</S.TabTitle>
           </S.TabBtn>
         </S.TabItem>
 
-        <S.TabItem onClick={() => changeGenreHandler(questTypes[3])}>
-          <S.TabBtn isActive={currentGenre === questTypes[3]}>
+        <S.TabItem onClick={() => changeGenreHandler(questType.Mystic)}>
+          <S.TabBtn isActive={currentGenre === questType.Mystic}>
             <IconMystic />
             <S.TabTitle>Мистика</S.TabTitle>
           </S.TabBtn>
         </S.TabItem>
 
-        <S.TabItem onClick={() => changeGenreHandler(questTypes[4])}>
-          <S.TabBtn isActive={currentGenre === questTypes[4]}>
+        <S.TabItem onClick={() => changeGenreHandler(questType.Detective)}>
+          <S.TabBtn isActive={currentGenre === questType.Detective}>
             <IconDetective />
             <S.TabTitle>Детектив</S.TabTitle>
           </S.TabBtn>
         </S.TabItem>
 
-        <S.TabItem onClick={() => changeGenreHandler(questTypes[5])}>
-          <S.TabBtn isActive={currentGenre === questTypes[5]}>
+        <S.TabItem onClick={() => changeGenreHandler(questType.SciFi)}>
+          <S.TabBtn isActive={currentGenre === questType.SciFi}>
             <IconScifi />
             <S.TabTitle>Sci-fi</S.TabTitle>
           </S.TabBtn>
         </S.TabItem>
       </S.Tabs>
 
-      <S.QuestsList>
+      {isQuestsListLoading && <S.ErrorTitle>{ErrorMessage.Loading}</S.ErrorTitle>}
+
+      {isLoadQuestsError && <S.ErrorTitle>{ErrorMessage.Failed}</S.ErrorTitle>}
+
+      {isLoadQuestsSuccess && <S.QuestsList>
         {questsList.map((quest) => (
           <S.QuestItem key={quest.id}>
             <S.QuestItemLink to={`/detailed-quest/${quest.id}`}>
@@ -99,7 +106,7 @@ const QuestsCatalog = () => {
             </S.QuestItemLink>
           </S.QuestItem>
         ))}
-      </S.QuestsList>
+      </S.QuestsList>}
     </>
   );
 }

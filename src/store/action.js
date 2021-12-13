@@ -9,6 +9,7 @@ export const changeGenre = createAction(
 );
 
 export const requestQuests = createAction(ActionType.QuestsLoading);
+
 export const loadQuestsError = createAction(ActionType.LoadQuestsError);
 
 export const loadQuestsSuccess = createAction(
@@ -16,4 +17,15 @@ export const loadQuestsSuccess = createAction(
   (quests) => ({
     payload: quests,
   }),
+);
+
+export const requestDetailedQuest = createAction(ActionType.DetailedQuestLoading);
+
+export const loadDetailedQuestError = createAction(ActionType.LoadDetailedQuestError);
+
+export const loadDetailedQuestSuccess = createAction(
+  ActionType.LoadDetailedQuestSuccess,
+  (detailedQuest) => ({
+    payload: detailedQuest,
+  })
 );

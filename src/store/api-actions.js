@@ -1,5 +1,6 @@
-import { APIRoute } from 'const';
-import { loadDetailedQuestError, loadDetailedQuestSuccess, loadQuestsError, loadQuestsSuccess, requestDetailedQuest, requestQuests } from './action';
+import { APIRoute, Message } from 'const';
+import { loadDetailedQuestError, loadDetailedQuestSuccess, loadQuestsError, loadQuestsSuccess, postingNewBooking, postNewBookingError, postNewBookingSuccess, requestDetailedQuest, requestQuests } from './action';
+import { toast } from 'react-toastify';
 
 export const fetchQuestsAction = () => (
   async (dispatch, _, api) => {
@@ -25,4 +26,20 @@ export const fetchDetailedQuestAction = (id) => (
       dispatch(loadDetailedQuestError());
     }
   }
-)
+);
+
+export const postBookingDataAction = ({name, peopleCount, phone, isLegal}) => (
+  async (dispatch, _, api) => {
+    try {
+      dispatch(postingNewBooking());
+      const response = await api.post(APIRoute.Booking, {name, peopleCount, phone, isLegal});
+      console.log(response);
+      dispatch(postNewBookingSuccess(true));
+      toast.success(Message.PostSuccess);
+    }
+    catch {
+      dispatch(postNewBookingError());
+      toast.error(Message.PostFailed);
+    }
+  }
+);

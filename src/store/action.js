@@ -8,6 +8,13 @@ export const changeGenre = createAction(
   }),
 );
 
+export const changeScreen = createAction(
+  ActionType.ChangeScreen,
+  (screen) => ({
+    payload: screen,
+  }),
+);
+
 export const requestQuests = createAction(ActionType.QuestsLoading);
 
 export const loadQuestsError = createAction(ActionType.LoadQuestsError);
@@ -27,5 +34,16 @@ export const loadDetailedQuestSuccess = createAction(
   ActionType.LoadDetailedQuestSuccess,
   (detailedQuest) => ({
     payload: detailedQuest,
-  })
+  }),
 );
+
+export const postingNewBooking = createAction(ActionType.PostNewBooking);
+
+export const postNewBookingSuccess = createAction(
+  ActionType.PostNewBookingSuccess,
+  (status) => ({
+    payload: status,
+  }),
+);
+
+export const postNewBookingError = createAction(ActionType.PostNewBookingError);

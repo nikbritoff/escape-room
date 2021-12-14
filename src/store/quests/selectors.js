@@ -1,5 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { questType } from 'const';
+import { QuestType } from 'const';
 import { getCurrentGenre } from 'store/app-state/selectors';
 import { NameSpace } from 'store/root-reducer';
 
@@ -10,7 +10,7 @@ export const getQuestsSuccess = (state) => state[NameSpace.Quests].questsSuccess
 
 export const selectCurrentQuests = createSelector([getQuestsList, getCurrentGenre],
   (questsList, currentGenre) => {
-    if (currentGenre === questType.All) {
+    if (currentGenre === QuestType.All) {
       return questsList;
     }
 

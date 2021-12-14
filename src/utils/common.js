@@ -1,4 +1,4 @@
-import { QuestLevel, questType } from 'const';
+import { QuestLevel, QuestType } from 'const';
 
 export const translateQuestLevel = (level) => {
   switch (level) {
@@ -15,15 +15,15 @@ export const translateQuestLevel = (level) => {
 
 export const translateQuestType = (type) => {
   switch (type) {
-    case questType.Adventures:
+    case QuestType.Adventures:
       return 'приключения';
-    case questType.Horror:
+    case QuestType.Horror:
       return 'ужасы';
-    case questType.Mystic:
+    case QuestType.Mystic:
       return 'мистика';
-    case questType.Detective:
+    case QuestType.Detective:
       return 'детектив';
-    case questType.SciFi:
+    case QuestType.SciFi:
       return 'sci-fi';
     default:
       return type;

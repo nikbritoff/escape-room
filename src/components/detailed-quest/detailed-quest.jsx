@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getDetailedQuest, getDetailedQuestError, getDetailedQuestLoading } from 'store/detailed-quest/selectors';
 import { fetchDetailedQuestAction } from 'store/api-actions';
 import { translateQuestLevel, translateQuestType } from 'utils/common';
-import { ErrorMessage } from 'const';
+import { Message } from 'const';
 
 const DetailedQuest = () => {
   const [isBookingModalOpened, setIsBookingModalOpened] = useState(false);
@@ -28,11 +28,15 @@ const DetailedQuest = () => {
     setIsBookingModalOpened(true);
   };
 
+  const onModalCloseBtnClick = () => {
+    setIsBookingModalOpened(false);
+  };
+
   if (isDetailedQuestError) {
     return (
       <MainLayout>
       <S.Main>
-        <p>{ErrorMessage.Failed}</p>
+        <p>{Message.Failed}</p>
       </S.Main>
     </MainLayout>
     )
@@ -42,7 +46,7 @@ const DetailedQuest = () => {
     return (
       <MainLayout>
       <S.Main>
-        <p>{ErrorMessage.Loading}</p>
+        <p>{Message.Loading}</p>
       </S.Main>
     </MainLayout>
     )
@@ -52,7 +56,7 @@ const DetailedQuest = () => {
     <MainLayout>
       <S.Main>
         <S.PageImage
-          src={quest.coverImg}
+          src={`../${quest.coverImg}`}
           alt={`Квест ${quest.title}`}
           width="1366"
           height="768"
@@ -89,7 +93,7 @@ const DetailedQuest = () => {
           </S.PageDescription>
         </S.PageContentWrapper>
 
-        {isBookingModalOpened && <BookingModal />}
+        {isBookingModalOpened && <BookingModal onModalCloseBtnClick={onModalCloseBtnClick} />}
       </S.Main>
     </MainLayout>
   );

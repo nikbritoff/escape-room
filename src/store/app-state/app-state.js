@@ -1,15 +1,19 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { questType } from 'const';
-import { changeGenre } from 'store/action';
+import { QuestType, Screen } from 'const';
+import { changeGenre, changeScreen } from 'store/action';
 
 const initialState = {
-  currentGenre: questType.All,
+  currentGenre: QuestType.All,
+  currentScreen: Screen.Quests,
 }
 
 const appState = createReducer(initialState, (builder) => {
   builder
     .addCase(changeGenre, (state, action) => {
       state.currentGenre = action.payload;
+    })
+    .addCase(changeScreen, (state, action) => {
+    state.currentScreen = action.payload
     });
 });
 

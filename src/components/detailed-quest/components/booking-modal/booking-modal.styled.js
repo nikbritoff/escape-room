@@ -76,6 +76,7 @@ const BookingForm = styled.form`
 const BookingField = styled.p`
   display: flex;
   flex-direction: column;
+  position: relative;
 
   margin: 0;
   padding: 0;
@@ -115,6 +116,16 @@ const BookingInput = styled.input`
   }
 `;
 
+const BookingInputErrorText = styled.span`
+  position: absolute;
+  bottom: -25px;
+  left: 20px;
+  font-family: ingerit;
+  color: #F2890F;
+  font-size: 15px;
+  font-weight: 500;
+`
+
 const BookingSubmit = styled(Button)`
   align-self: center;
   margin-top: 55px;
@@ -130,7 +141,7 @@ const BookingSubmit = styled(Button)`
   background-color: ${({ theme }) => theme.color.pinkSwan};
 
   &:focus,
-  &:hover {
+  &:hover, {
     background-color: ${({ theme }) => theme.color.gray};
   }
 `;
@@ -226,4 +237,6 @@ export {
   BookingCheckboxInput,
   BookingCheckboxText,
   BookingLegalLink,
+
+  BookingInputErrorText,
 };

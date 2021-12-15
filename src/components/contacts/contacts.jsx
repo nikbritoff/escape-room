@@ -73,7 +73,11 @@ const Contacts = () => {
                 >
                   <Placemark
                     geometry={MapSetting.Coordinates}
-                    options={{iconColor: MapSetting.PlacemarkColor}}
+                    options={{
+                      iconLayout: 'default#image',
+                      iconImageHref: `../${MapSetting.PlacemarkSrc}`,
+                      iconImageSize: MapSetting.PlacemarkSize,
+                    }}
                   />
                 </Map>
             </S.ContactsMap>

@@ -59,7 +59,7 @@ export const Message = {
 export const FormValidateMessage = {
   Name: 'Введите символы а-я или a-z',
   PeopleCount: 'Введите число',
-  Phone: 'Номер телефоа должен содержать 10 символов',
+  Phone: 'Номер телефона должен содержать 10 символов',
 };
 
 export const ADDRESS_COORDINATES = [59.968137, 30.316272];

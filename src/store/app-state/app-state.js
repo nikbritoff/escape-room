@@ -3,7 +3,7 @@ import { QuestType, Screen } from 'const';
 import { changeGenre, changeScreen } from 'store/action';
 
 const initialState = {
-  currentGenre: QuestType.All,
+  currentGenre: QuestType.All.Eng,
   currentScreen: Screen.Quests,
 }
 

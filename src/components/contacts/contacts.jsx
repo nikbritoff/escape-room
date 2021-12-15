@@ -4,7 +4,7 @@ import * as S from './contacts.styled';
 import { useDispatch } from 'react-redux';
 import { changeScreen } from 'store/action';
 import { useEffect } from 'react';
-import { ADDRESS_COORDINATES, ADDRESS_PLACEMARK_COLOR, Screen } from 'const';
+import { MapSetting, Screen } from 'const';
 import { YMaps, Map, Placemark } from 'react-yandex-maps';
 
 const Contacts = () => {
@@ -13,7 +13,6 @@ const Contacts = () => {
   useEffect(() => {
     dispatch(changeScreen(Screen.Contacts));
   });
-
 
   return (
     <YMaps>
@@ -67,14 +66,14 @@ const Contacts = () => {
                 height="100%"
                 defaultState={
                     {
-                      center: ADDRESS_COORDINATES,
-                      zoom: 17,
+                      center: MapSetting.Coordinates,
+                      zoom: MapSetting.Zoom,
                     }
                   }
                 >
                   <Placemark
-                    geometry={ADDRESS_COORDINATES}
-                    options={{iconColor: ADDRESS_PLACEMARK_COLOR}}
+                    geometry={MapSetting.Coordinates}
+                    options={{iconColor: MapSetting.PlacemarkColor}}
                   />
                 </Map>
             </S.ContactsMap>

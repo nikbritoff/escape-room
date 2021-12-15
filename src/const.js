@@ -33,18 +33,45 @@ export const Screen = {
 };
 
 export const QuestType = {
-  All: 'all',
-  Adventures: 'adventures',
-  Horror: 'horror',
-  Mystic: 'mystic',
-  Detective: 'detective',
-  SciFi: 'sci-fi',
+  All: {
+    Eng: 'all',
+    Ru: 'все квесты',
+  },
+  Adventures: {
+    Eng: 'adventures',
+    Ru: 'приключения',
+  },
+  Horror: {
+    Eng: 'horror',
+    Ru: 'ужасы',
+  },
+  Mystic: {
+    Eng: 'mystic',
+    Ru: 'мистика',
+  },
+  Detective: {
+    Eng: 'detective',
+    Ru: 'детектив',
+  },
+  SciFi: {
+    Eng: 'sci-fi',
+    Ru: 'sci-fi',
+  },
 };
 
 export const QuestLevel = {
-  Easy: 'easy',
-  Medium: 'medium',
-  Hard: 'hard',
+  Easy: {
+    Eng: 'easy',
+    Ru: 'легкий'
+  },
+  Medium: {
+    Eng: 'medium',
+    Ru: 'средний',
+  },
+  Hard: {
+    Eng: 'hard',
+    Ru: 'сложный',
+  },
 };
 
 export const Message = {
@@ -62,6 +89,8 @@ export const FormValidateMessage = {
   Phone: 'Номер телефона должен содержать 10 символов',
 };
 
-export const ADDRESS_COORDINATES = [59.968137, 30.316272];
-
-export const ADDRESS_PLACEMARK_COLOR = '#1A1A1A';
+export const MapSetting = {
+  Coordinates: [59.968137, 30.316272],
+  PlacemarkColor: '#1A1A1A',
+  Zoom: 17,
+};

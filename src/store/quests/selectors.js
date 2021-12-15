@@ -10,7 +10,7 @@ export const getQuestsSuccess = (state) => state[NameSpace.Quests].questsSuccess
 
 export const selectCurrentQuests = createSelector([getQuestsList, getCurrentGenre],
   (questsList, currentGenre) => {
-    if (currentGenre === QuestType.All) {
+    if (currentGenre === QuestType.All.Eng) {
       return questsList;
     }
 

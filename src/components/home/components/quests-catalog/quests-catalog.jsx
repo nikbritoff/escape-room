@@ -29,43 +29,55 @@ const QuestsCatalog = () => {
     return (
     <>
       <S.Tabs>
-        <S.TabItem onClick={() => changeGenreHandler(QuestType.All)}>
-          <S.TabBtn isActive={currentGenre === QuestType.All}>
+        {/* {Object.values(QuestType).map((type) => {
+          console.log(type);
+          return (
+            <S.TabItem onClick={() => changeGenreHandler(type.Eng)}>
+              <S.TabBtn isActive={currentGenre === type.Eng}>
+                <IconAllQuests />
+                <S.TabTitle>{type.Ru}</S.TabTitle>
+              </S.TabBtn>
+            </S.TabItem>
+          );
+        })} */}
+
+        <S.TabItem onClick={() => changeGenreHandler(QuestType.All.Eng)}>
+          <S.TabBtn isActive={currentGenre === QuestType.All.Eng}>
             <IconAllQuests />
             <S.TabTitle>Все квесты</S.TabTitle>
           </S.TabBtn>
         </S.TabItem>
 
-        <S.TabItem onClick={() => changeGenreHandler(QuestType.Adventures)}>
-          <S.TabBtn isActive={currentGenre === QuestType.Adventures}>
+        <S.TabItem onClick={() => changeGenreHandler(QuestType.Adventures.Eng)}>
+          <S.TabBtn isActive={currentGenre === QuestType.Adventures.Eng}>
             <IconAdventures/>
             <S.TabTitle>Приключения</S.TabTitle>
           </S.TabBtn>
         </S.TabItem>
 
-        <S.TabItem onClick={() => changeGenreHandler(QuestType.Horror)}>
-          <S.TabBtn isActive={currentGenre === QuestType.Horror}>
+        <S.TabItem onClick={() => changeGenreHandler(QuestType.Horror.Eng)}>
+          <S.TabBtn isActive={currentGenre === QuestType.Horror.Eng}>
             <IconHorrors />
             <S.TabTitle>Ужасы</S.TabTitle>
           </S.TabBtn>
         </S.TabItem>
 
-        <S.TabItem onClick={() => changeGenreHandler(QuestType.Mystic)}>
-          <S.TabBtn isActive={currentGenre === QuestType.Mystic}>
+        <S.TabItem onClick={() => changeGenreHandler(QuestType.Mystic.Eng)}>
+          <S.TabBtn isActive={currentGenre === QuestType.Mystic.Eng}>
             <IconMystic />
             <S.TabTitle>Мистика</S.TabTitle>
           </S.TabBtn>
         </S.TabItem>
 
-        <S.TabItem onClick={() => changeGenreHandler(QuestType.Detective)}>
-          <S.TabBtn isActive={currentGenre === QuestType.Detective}>
+        <S.TabItem onClick={() => changeGenreHandler(QuestType.Detective.Eng)}>
+          <S.TabBtn isActive={currentGenre === QuestType.Detective.Eng}>
             <IconDetective />
             <S.TabTitle>Детектив</S.TabTitle>
           </S.TabBtn>
         </S.TabItem>
 
-        <S.TabItem onClick={() => changeGenreHandler(QuestType.SciFi)}>
-          <S.TabBtn isActive={currentGenre === QuestType.SciFi}>
+        <S.TabItem onClick={() => changeGenreHandler(QuestType.SciFi.Eng)}>
+          <S.TabBtn isActive={currentGenre === QuestType.SciFi.Eng}>
             <IconScifi />
             <S.TabTitle>Sci-fi</S.TabTitle>
           </S.TabBtn>

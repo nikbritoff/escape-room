@@ -61,3 +61,7 @@ export const FormValidateMessage = {
   PeopleCount: 'Введите число',
   Phone: 'Номер телефоа должен содержать 10 символов',
 };
+
+export const ADDRESS_COORDINATES = [59.968137, 30.316272];
+
+export const ADDRESS_PLACEMARK_COLOR = '#1A1A1A';

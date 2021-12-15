@@ -90,7 +90,8 @@ export const FormValidateMessage = {
 };
 
 export const MapSetting = {
-  Coordinates: [59.968137, 30.316272],
-  PlacemarkColor: '#1A1A1A',
+  Coordinates: [59.968477, 30.317592],
+  PlacemarkSize: [48, 60],
+  PlacemarkSrc: 'img/icon-placemark.svg',
   Zoom: 17,
 };

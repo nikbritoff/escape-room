@@ -9,20 +9,25 @@ import Contacts from 'components/contacts/contacts';
 import Home from 'components/home/home';
 import { appTheme } from './common';
 import * as S from './app.styled';
+import NotFound from 'components/not-found/not-found';
+import { AppRoute } from 'const';
 
 const App = () => (
   <ThemeProvider theme={appTheme}>
     <S.GlobalStyle />
     <Router>
       <Switch>
-        <Route exact path="/quest">
+        <Route exact path={AppRoute.Home}>
+          <Home />
+        </Route>
+        <Route exact path={AppRoute.Quest}>
           <DetailedQuest />
         </Route>
-        <Route exact path="/contacts">
+        <Route exact path={AppRoute.Contacts}>
           <Contacts />
         </Route>
-        <Route path="/">
-          <Home />
+        <Route>
+          <NotFound/>
         </Route>
       </Switch>
     </Router>

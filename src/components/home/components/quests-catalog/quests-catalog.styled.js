@@ -200,6 +200,14 @@ const QuestFeatureItem = styled.li`
   }
 `;
 
+const ErrorTitle = styled.h2`
+  display: block;
+  color: #F2890F;
+  margin: auto;
+  font-size: 32px;
+  line-height: 1.1875;
+`;
+
 export {
   Tabs,
   TabItem,
@@ -214,4 +222,5 @@ export {
   QuestImage,
   QuestFeatures,
   QuestFeatureItem,
+  ErrorTitle,
 };
